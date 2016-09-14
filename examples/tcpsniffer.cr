@@ -49,7 +49,9 @@ begin
     next if dataonly && !pkt.tcp_data?
 
     if bodymode
-      puts "%s: %s" % [pkt.packet_header, pkt.tcp_data.to_s.inspect]
+      if pkt.tcp_data.to_s.inspect.size > 2
+        puts "%s: %s" % [pkt.packet_header, pkt.tcp_data.to_s.inspect]
+      end
     else
       puts pkt.to_s
       puts "-" * 80     if verbose
