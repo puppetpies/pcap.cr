@@ -17,6 +17,7 @@ verbose  = false
 dataonly = false
 bodymode = false
 version  = false
+whitespace = false
 
 opts = OptionParser.new do |parser|
   parser.banner = "#{$0} version 0.2.1\n\nUsage: #{$0} [options]"
@@ -29,11 +30,13 @@ opts = OptionParser.new do |parser|
   parser.on("-b", "Body printing mode"    ) { bodymode = true }
   parser.on("-x", "Show hexdump output"   ) { hexdump  = true }
   parser.on("-v", "Show verbose output"   ) { verbose  = true }
+  parser.on("-w", "Remove whitespace packets") { whitespace = true }
   parser.on("--version", "Print the version and exit") { version = true }
   parser.on("-h", "--help", "Show help"   ) { puts parser; exit 0 }
 end
 
 begin
+  WHITESPACE = 2 # Default size for zero data or "".
   opts.parse!
 
   if version
@@ -49,7 +52,11 @@ begin
     next if dataonly && !pkt.tcp_data?
 
     if bodymode
-      if pkt.tcp_data.to_s.inspect.size > 2
+      if whitespace
+        if pkt.tcp_data.to_s.inspect.size > WHITESPACE
+            puts "%s: %s" % [pkt.packet_header, pkt.tcp_data.to_s.inspect]
+        end
+      else
         puts "%s: %s" % [pkt.packet_header, pkt.tcp_data.to_s.inspect]
       end
     else
