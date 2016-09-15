@@ -30,13 +30,15 @@ opts = OptionParser.new do |parser|
   parser.on("-b", "Body printing mode"    ) { bodymode = true }
   parser.on("-x", "Show hexdump output"   ) { hexdump  = true }
   parser.on("-v", "Show verbose output"   ) { verbose  = true }
-  parser.on("-w", "Remove whitespace packets") { whitespace = true }
+  parser.on("-w", "We can easily manage White spaces ( diff(1) uses this as ignore all white space)") { whitespace = true }
   parser.on("--version", "Print the version and exit") { version = true }
   parser.on("-h", "--help", "Show help"   ) { puts parser; exit 0 }
 end
 
+WHITESPACE = 2 # Default size for zero data or "" in body mode
+  
 begin
-  WHITESPACE = 2 # Default size for zero data or "".
+
   opts.parse!
 
   if version
