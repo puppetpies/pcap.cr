@@ -35,8 +35,6 @@ opts = OptionParser.new do |parser|
   parser.on("-h", "--help", "Show help"   ) { puts parser; exit 0 }
 end
 
-WHITESPACE = 2 # Default size for zero data or "" in body mode
-  
 begin
 
   opts.parse!
