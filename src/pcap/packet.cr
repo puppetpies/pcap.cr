@@ -55,6 +55,18 @@ module Pcap
       tcp_header.length
     end
 
+    {% for method in %w(ip_v ip_proto ip_hl ip_tos ip_len ip_id ip_ttl ip_sum) %} 
+      def {{ method.id }}
+        ip_header.{{ method.id }}
+      end
+    {% end %}
+
+    {% for method in %w(tcp_src tcp_dst tcp_offx2 tcp_win tcp_sum tcp_urg tcp_seq tcp_ack) %} 
+      def {{ method.id }}
+        tcp_header.{{ method.id }}
+      end
+    {% end %}
+
     val tcp_header = (
       ptr = @data + sizeof(LibPcap::EtherHeader) + size_ip
       TcpHeader.new((ptr.as(Pointer(LibPcap::TcpHeader))).value, packet_header)
