@@ -62,11 +62,11 @@ module Pcap
     # end
     
     def ip_src
-      ip_src = IpAddr.inspect(ip_header.ip_src)
+      IpAddr.inspect(ip_header.ip_src)
     end
     
     def ip_dst
-      ip_dst = IpAddr.inspect(ip_header.ip_dst)
+      IpAddr.inspect(ip_header.ip_dst)
     end
     
     {% for method in %w(ip_v ip_proto ip_hl ip_tos ip_len ip_id ip_ttl ip_sum) %}
