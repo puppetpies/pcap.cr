@@ -70,6 +70,14 @@ lib LibPcap
     tcp_sum   : UInt16  # /* checksum */
     tcp_urg   : UInt16  # /* urgent pointer */
   end
+  
+  # Udp Header
+  struct UdpHeader
+    udp_dst UInt16  # /* destination port */
+    udp_len : UInt16 # /* total length */
+    udp_sum : UInt16 # /* checksum */
+    udp_sport : UInt16 # /* source port */
+  end
 
   fun pcap_lookupdev(x0 : LibC::Char*) : LibC::Char*
   alias X__UInt = LibC::UInt
