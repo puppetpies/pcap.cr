@@ -73,9 +73,9 @@ lib LibPcap
   
   # Udp Header
   struct UdpHeader
-    udp_dst UInt16  # /* destination port */
-    udp_len : UInt16 # /* total length */
-    udp_sum : UInt16 # /* checksum */
+    udp_dst   : UInt16  # /* destination port */
+    udp_len   : UInt16 # /* total length */
+    udp_sum   : UInt16 # /* checksum */
     udp_sport : UInt16 # /* source port */
   end
 
