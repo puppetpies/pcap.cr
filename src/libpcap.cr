@@ -78,7 +78,7 @@ lib LibPcap
     udp_sum   : UInt16  # /* checksum */
     udp_sport : UInt16  # /* source port */
   end
-
+  
   fun pcap_lookupdev(x0 : LibC::Char*) : LibC::Char*
   alias X__UInt = LibC::UInt
   alias UInt = X__UInt
