@@ -36,6 +36,17 @@ lib LibPcap
   TH_CWR   = 0x80
   TH_FLAGS = [TH_FIN, TH_SYN, TH_RST, TH_ACK, TH_URG, TH_ECE, TH_CWR]
 
+  # UDP socket options
+  UDP_CORK = 1 # /* Never send partially complete segments */
+  UDP_ENCAP = 100 # /* Set the socket to accept encapsulated packets */
+  UDP_NO_CHECK6_TX = 101 # /* Disable sending checksum for UDP6X */
+  UDP_NO_CHECK6_RX = 102 # /* Disable accpeting checksum for UDP6 */
+
+  # UDP encapsulation types 
+  UDP_ENCAP_ESPINUDP_NON_IKE = 1 # /* draft-ietf-ipsec-nat-t-ike-00/01 */
+  UDP_ENCAP_ESPINUDP = 2 # /* draft-ietf-ipsec-udp-encaps-06 */
+  UDP_ENCAP_L2TPINUDP = 3 # /* rfc2661 */
+
   # Ethernet Header
   alias EthMac = UInt8[6] # ETH_ALEN
 
