@@ -38,7 +38,15 @@ module Pcap
     def tcp_data_size
       caplen - tcp_data_offset
     end
-
+    
+    def tcp_data_len
+      tcp_doff * 4
+    end
+    
+    def tcp_hlen
+      sizeof(LibPcap::TcpHeader)
+    end 
+    
     def length
       tcp_doff * 4
     end
